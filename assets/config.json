@@ -1,0 +1,26 @@
+{
+  "WelcomeTitle": "WHAT'S YOUR DATE OF BIRTH?",
+  "WrongBirthDay": "Hmmm.... You're not my girl!",
+  "BirthDay": {
+    "Day": 24,
+    "Month": 10,
+    "Year": 1996
+  },
+  "HappyBirthDayText": "Happy Birthday, Em!!!",
+  "DearMessage": "Dear my girl!",
+  "Messages": ["Message1", "Message2", "Message3", "Message4", "Message5"],
+  "WishlistNumber": 7,
+  "WishlistMessage": "Hmmm, so sad when you don't input any things :'(",
+  "NameInHeart": {
+    "Name1": "I",
+    "Name2": "You"
+  },
+  "LastMessage": "Do you want to say with me?",
+  "Email": {
+    "SecureToken": "ABCD12345",
+    "To": "emaito@example.com",
+    "From": "emaifrom@example.com",
+    "Subject": "Happy birthday"
+  },
+  "Music": "assets/romantic-happy-birthday.mp3"
+}
