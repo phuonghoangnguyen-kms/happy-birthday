@@ -1,0 +1,174 @@
+$s: solid;
+$a: absolute;
+$tb: 46px;
+$lr: 70px;
+$br: 6px;
+//color variables
+$left: #fa565a;
+$right: #ed4c50;
+$bottom: #fa565a;
+$txt: #b0b0b0;
+$top: #c94548;
+
+.container,
+.envelope,
+.flip,
+.letter,
+.text,
+.text:before,
+.text:after {
+  position: $a;
+}
+.container {
+  cursor: pointer;
+  position: relative;
+  top: 50px;
+  margin: auto;
+  height: 92px;
+  width: 140px;
+  background: #ddd;
+  border-radius: $br;
+  box-shadow: 0px 0px 3px #000;
+}
+.envelope {
+  border-top: $tb $s transparent;
+  border-left: $lr $s $left;
+  border-bottom: $tb $s $bottom;
+  border-right: $lr $s $right;
+  border-radius: $br;
+  z-index: 9;
+}
+.flip {
+  top: 0;
+  left: 0;
+  border-top: $tb $s $top;
+  border-left: $lr $s transparent;
+  border-bottom: $tb $s transparent;
+  border-right: $lr $s transparent;
+  border-radius: $br;
+  z-index: 6;
+}
+.letter {
+  top: 0px;
+  left: 2px;
+  height: 92px;
+  width: 136px;
+  background: #ddd;
+  border-radius: $br;
+  z-index: 5;
+}
+.text {
+  top: 10px;
+  left: 12px;
+  height: 6px;
+  width: 100px;
+  background: $txt;
+
+  &:before,
+  &:after {
+    content: "";
+    height: 100%;
+    background: $txt;
+    left: 0px;
+  }
+  &:before {
+    top: 10px;
+    width: 50px;
+  }
+  &:after {
+    top: 20px;
+    width: 65px;
+  }
+}
+
+/*Classes to be Added and removed*/
+.open {
+  animation: flipOpen 0.4s ease-in forwards;
+}
+
+.close {
+  animation: flipClose 0.4s ease-in forwards;
+}
+
+.letterOpen {
+  top: -40px;
+  transition: 0.3s ease-in;
+}
+
+.letterClose {
+  top: 0px;
+  transition: 0.3s ease-in;
+}
+//animations
+@keyframes flipOpen {
+  0% {
+    transform: rotateX(0deg);
+    transform-origin: center top;
+  }
+  100% {
+    transform: rotateX(180deg);
+    transform-origin: center top;
+  }
+}
+@keyframes flipClose {
+  0% {
+    transform: rotateX(180deg);
+    transform-origin: center top;
+  }
+  100% {
+    transform: rotateX(0deg);
+    transform-origin: center top;
+  }
+}
+
+$heart-size: 25px;
+$heart-size-before: $heart-size / -2;
+$heart-size-after: $heart-size / 2;
+$heart-color: white;
+.heart {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $heart-color;
+  height: $heart-size;
+  width: $heart-size;
+  transform: rotate(-45deg);
+  animation-name: beat;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  z-index: 10;
+
+  &:after {
+    background-color: $heart-color;
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    width: $heart-size;
+    height: $heart-size;
+    top: 0px;
+    left: $heart-size-after;
+  }
+
+  &:before {
+    background-color: $heart-color;
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    width: $heart-size;
+    height: $heart-size;
+    top: $heart-size-before;
+    left: 0px;
+  }
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1) rotate(-45deg);
+  }
+  50% {
+    transform: scale(1.5) rotate(-45deg);
+  }
+}

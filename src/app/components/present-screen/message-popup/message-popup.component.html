@@ -1,0 +1,71 @@
+<div class="popup-content">
+  <div class="container">
+    <div class="welcome" *ngIf="index == -1">{{ config.DearMessage }}</div>
+    <ng-container>
+      <ng-container *ngFor="let item of messages; let i = index">
+        <div class="image" id="image-{{ i }}" [class.show]="index == i"></div>
+      </ng-container>
+      <div class="message" *ngIf="-1 < index && index < messages.length">
+        {{ messages[index] }}
+      </div>
+    </ng-container>
+    <div class="image-heart" *ngIf="index == messages.length">
+      <image-heart></image-heart>
+    </div>
+    <div class="wishlist" *ngIf="index == messages.length + 1">
+      <div class="header">Wishlist</div>
+      <div>
+        <ol>
+          <li *ngFor="let whishList of whishLists">
+            <input type="text" [(ngModel)]="whishList.item" />
+          </li>
+        </ol>
+      </div>
+    </div>
+    <ng-container *ngIf="index == messages.length + 2">
+      <div class="end">
+        <div class="end-container">
+          <div>L</div>
+          <div class="ico">
+            <div class="title">
+              <span>{{ config.NameInHeart.Name1 }}</span>
+              <span class="ico3"></span>
+              <span>{{ config.NameInHeart.Name2 }}</span>
+            </div>
+            <span class="ico2"></span>
+          </div>
+          <div>VE YOU</div>
+        </div>
+        <div class="end-message">{{ config.LastMessage }}</div>
+        <div class="end-box">
+          <textarea
+            name=""
+            id=""
+            cols="50"
+            rows="3"
+            [(ngModel)]="lastMessage"
+          ></textarea>
+          <button
+            class="btn btn-success"
+            [disabled]="!lastMessage || lastMessage == ''"
+            (click)="sendMessage()"
+          >
+            Send
+          </button>
+        </div>
+      </div>
+      <div class="close-popup">
+        <a mat-dialog-close>Close</a>
+      </div>
+    </ng-container>
+  </div>
+  <div class="button-navigate navigate-previous" *ngIf="index > -1">
+    <span class="arrow" (click)="previous()"></span>
+  </div>
+  <div
+    class="button-navigate navigate-next"
+    *ngIf="index < messages.length + 2"
+  >
+    <span class="arrow" (click)="next()"></span>
+  </div>
+</div>

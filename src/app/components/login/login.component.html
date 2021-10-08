@@ -1,0 +1,39 @@
+<div class="background">
+  <div class="container">
+    <div class="header">
+      <h2>{{config.WelcomeTitle}}</h2>
+    </div>
+    <div class="input-container">
+      <span>
+        <input class="basic-slide" id="day" type="number" maxlength="2" min="1" max="31" [(ngModel)]="day"
+          (focusin)="isFocus = true" (focusout)="isFocus = false" placeholder="{{config.BirthDay.Day}}" />
+        <label for="day">DAY</label>
+      </span>
+      <span>
+        <input class="basic-slide" id="month" type="number" maxlength="2" min="1" max="12" [(ngModel)]="month"
+          (focusin)="isFocus = true" (focusout)="isFocus = false" placeholder="{{config.BirthDay.Month}}" />
+        <label for="month">MONTH</label>
+      </span>
+      <span>
+        <input class="basic-slide" id="year" type="number" maxlength="4" [(ngModel)]="year" (focusin)="isFocus = true"
+          (focusout)="isFocus = false" placeholder="{{config.BirthDay.Year}}" />
+        <label for="year">YEAR</label>
+      </span>
+    </div>
+    <div class="footer">
+      <div class="box" [class.show]="verify()">
+        <div class="box-body" [class.active]="openBox" (click)="openBox = !openBox">
+          <div class="unbox" (click)="open()">
+            <img class="img" src="assets/images/heart.png">
+            <div class="click-me">Click me</div>
+          </div>
+          <div class="box-lid">
+            <div class="box-bowtie"></div>
+          </div>
+        </div>
+      </div>
+      <div class="click-box" *ngIf="verify()">Click the box</div>
+      <div class="error" *ngIf="!verify() && day && month && year && !isFocus">{{config.WrongBirthDay}}</div>
+    </div>
+  </div>
+</div>

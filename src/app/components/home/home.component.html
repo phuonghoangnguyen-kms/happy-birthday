@@ -1,0 +1,4 @@
+<ng-container *ngIf="config">
+  <app-login *ngIf="step == 1" [config]="config" (next)="next()"></app-login>
+  <present-screen *ngIf="step == 2" [config]="config"></present-screen>
+</ng-container>

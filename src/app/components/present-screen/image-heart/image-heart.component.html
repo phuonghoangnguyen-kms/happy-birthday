@@ -1,0 +1,18 @@
+<ng-container *ngFor="let item of images; let i = index">
+  <div class="image" id="image-{{ i + 1 }}">
+    <div>
+      <img
+        src="assets/images/heart/{{ i + 1 }}.jpg"
+        alt=""
+        class="img-front"
+        style="--img-index: {{ i }}"
+      />
+      <img
+        src="assets/images/heart/{{ i + 1 }}-1.jpg"
+        class="img-back"
+        alt=""
+        style="--img-index: {{ i }}"
+      />
+    </div>
+  </div>
+</ng-container>

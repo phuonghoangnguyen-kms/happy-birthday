@@ -1,0 +1,82 @@
+@mixin transform($string) {
+  -webkit-transform: $string;
+  -moz-transform: $string;
+  -ms-transform: $string;
+  -o-transform: $string;
+}
+
+@function fadeout($color, $opacity) {
+  @return rgba($color, $opacity);
+}
+
+@mixin fabric($color1, $color2) {
+  $transparent: rgba(0, 0, 0, 0);
+  background: -moz-linear-gradient(right, $transparent, #4d4d4d, fadeout($color2, 0.7), #4d4d4d), -moz-linear-gradient(right, fadeout($color2, 0.3), fadeout($color1, 0.1), fadeout($color2, 0.2));
+  background: -o-linear-gradient(right, $transparent, #4d4d4d, fadeout($color2, 0.7), #4d4d4d), -o-linear-gradient(right, fadeout($color2, 0.3), fadeout($color1, 0.1), fadeout($color2, 0.2));
+  background: -webkit-linear-gradient(right, $transparent, #4d4d4d, fadeout($color2, 0.7), #4d4d4d), -webkit-linear-gradient(right, fadeout($color2, 0.3), fadeout($color1, 0.1), fadeout($color2, 0.2));
+  background: linear-gradient(to left, $transparent, #4d4d4d, fadeout($color2, 0.7), #4d4d4d), linear-gradient(to left, fadeout($color2, 0.3), fadeout($color1, 0.1), fadeout($color2, 0.2));
+  background-size: 67px 67px, 53px 53px;
+}
+
+@mixin spotlight() {
+  $transparent: rgba(0, 0, 0, 0);
+  background: -moz-radial-gradient(circle, $transparent, rgba(0, 0, 0, 0.3) 60%), -moz-radial-gradient(circle, $transparent, rgba(0, 0, 0, 0.5) 40%);
+  background: -o-radial-gradient(circle, $transparent, rgba(0, 0, 0, 0.3) 60%), -o-radial-gradient(circle, $transparent, rgba(0, 0, 0, 0.5) 40%);
+  background: -webkit-radial-gradient(circle, $transparent, rgba(0, 0, 0, 0.3) 60%), -webkit-radial-gradient(circle, $transparent, rgba(0, 0, 0, 0.5) 40%);
+  background: radial-gradient(circle, $transparent, rgba(0, 0, 0, 0.3) 60%), radial-gradient(circle, $transparent, rgba(0, 0, 0, 0.5) 40%);
+}
+
+$tint: black;
+
+#stage {
+  height: 100%;
+  background: black;
+  overflow: hidden;
+  position: relative;
+
+  &.active {
+    #curtain-left {
+      width: 0;
+      @include transform(matrix(1, 0, -0.2, 1, 0, 0));
+    }
+
+    #curtain-right {
+      width: 0;
+      @include transform(matrix(-1, 0, 0.2, 1, 0, 0));
+    }
+  }
+}
+
+.curtain {
+  position: absolute;
+  @include fabric(lighten($tint, 30%), lighten($tint, 20%));
+  background-size: 67px 67px, 53px 53px;
+  width: 60%;
+  height: 100%;
+  margin-left: -10%;
+  transition: (width 2s, transform 1s);
+
+  &#curtain-left {
+    left: 0;
+    margin-left: -10%;
+    @include transform(matrix(1, 0, 0, 1, 0, 0));
+  }
+
+  &#curtain-right {
+    right: 0;
+    margin-right: -10%;
+    @include transform(matrix(-1, 0, 0, 1, 0, 0));
+  }
+}
+
+.spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 40;
+  @include spotlight;
+  background-attachment: fixed;
+  background-position: -80px 0, 80px 0;
+}

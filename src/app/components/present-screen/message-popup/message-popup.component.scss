@@ -1,0 +1,431 @@
+@font-face {
+  font-family: FleurDeLeahRegular;
+  src: url(./../../../../assets/font/FleurDeLeah-Regular.ttf);
+}
+
+@font-face {
+  font-family: Clover;
+  src: url(./../../../../assets/font/clover.otf);
+}
+
+@font-face {
+  font-family: Iconmoon;
+  src: url("./../../../../assets/font/iconmoon.ttf");
+}
+
+$heart-size: 200px;
+$heart-size-before: $heart-size / -2;
+$heart-size-after: $heart-size / 2;
+$heart-color: red;
+
+:host {
+  .popup-content {
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+
+    .container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      .welcome {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: calc(100vw / 20);
+      }
+      .image {
+        width: 100%;
+        height: 100%;
+        // background-image: url("./../../../../assets/images/messages/1.jpg");
+        background-size: cover;
+        background-position: bottom;
+        display: none;
+
+        &.show {
+          display: block;
+        }
+      }
+      .image-heart {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .message {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.35);
+        color: white;
+        font-size: calc(100vw / 50);
+        white-space: pre-wrap;
+        padding: 5px;
+      }
+      .wishlist {
+        overflow-x: auto;
+        height: 100%;
+
+        .header {
+          font-family: FleurDeLeahRegular;
+          text-align: center;
+          font-size: 50px;
+        }
+        ol {
+          margin: 0;
+          li {
+            margin-bottom: 20px;
+            font-size: 20px;
+
+            input {
+              border-top: 0;
+              border-left: 0;
+              border-right: 0;
+              padding: 0;
+              width: 100%;
+              font-size: 20px;
+
+              &:focus-visible {
+                outline: unset;
+              }
+            }
+          }
+        }
+      }
+      $end-size: 130px;
+      .end {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        font-size: $end-size;
+
+        .end-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+
+          > div {
+            animation: opacity 10s;
+          }
+
+          .ico {
+            position: relative;
+            width: $end-size;
+            height: $end-size;
+
+            $title-size: 20px;
+            .title {
+              font-size: $title-size;
+              position: absolute;
+              z-index: 10;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              width: 100%;
+              height: 100%;
+              color: white;
+              .ico3:after {
+                color: white;
+                content: "\f004";
+                font-size: $title-size;
+                font-family: Iconmoon;
+              }
+            }
+
+            &:before,
+            &:after,
+            .ico2:before,
+            .ico2:after {
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
+
+            &:before,
+            &:after,
+            .ico2:before,
+            .ico2:after {
+              display: block;
+              font-size: $end-size;
+              color: #d34156;
+              content: "\f004";
+              font-family: Iconmoon;
+              text-rendering: auto;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+            }
+
+            &:before {
+              z-index: 3;
+            }
+            &:after {
+              animation: explode 4s infinite;
+            }
+
+            .ico2:before,
+            .ico2:after {
+              color: #d34156;
+            }
+
+            .ico2:before {
+              animation: explodeSmall 3s infinite;
+            }
+            .ico2:after {
+              animation: explodeSmall 2s infinite;
+            }
+          }
+        }
+
+        .end-message {
+          font-size: 16px;
+        }
+
+        .end-box {
+          margin-top: 10px;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+
+          textarea {
+            border-radius: 5px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+      .close-popup {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+    }
+
+    .button-navigate {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 60px;
+      background: rgba(0, 0, 0, 0.15);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.75s;
+
+      &.navigate-next {
+        right: -60px;
+
+        .arrow {
+          &:before,
+          &:after {
+            top: 41%;
+            left: 55%;
+            transform: translate(-50%, -50%) rotate(45deg);
+          }
+
+          &:after {
+            top: 59%;
+            left: 55%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+          }
+        }
+      }
+
+      &.navigate-previous {
+        left: -60px;
+
+        .arrow {
+          &:before,
+          &:after {
+            top: 41%;
+            left: 45%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+          }
+
+          &:after {
+            top: 59%;
+            left: 45%;
+            transform: translate(-50%, -50%) rotate(45deg);
+          }
+        }
+      }
+
+      .arrow {
+        cursor: pointer;
+        position: relative;
+        display: block;
+        width: 30px;
+        height: 30px;
+        border: solid 4px white;
+        border-radius: 100%;
+        z-index: 1;
+        transition: all 0.2s linear;
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          width: 35%;
+          height: 10%;
+          background: white;
+          z-index: 2;
+          transition: all 0.2s linear;
+        }
+        &:after {
+          z-index: 3;
+          top: 59%;
+          left: 55%;
+        }
+        &:hover {
+          border: solid 6px #777;
+          &:after,
+          &:before {
+            background: #777;
+          }
+        }
+        &:active {
+          border: solid 6px #111;
+          &:after,
+          &:before {
+            background: #111;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .button-navigate {
+        &.navigate-next {
+          right: 0;
+        }
+        &.navigate-previous {
+          left: 0;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .popup-content {
+      .container {
+        .wishlist {
+          .header {
+            font-size: 30px;
+          }
+          ol {
+            li {
+              margin-bottom: 10px;
+              font-size: 15px;
+              input {
+                font-size: 15px;
+              }
+            }
+          }
+        }
+        .end {
+          font-size: 80px;
+          .ico {
+            width: 80px;
+            height: 80px;
+
+            &:before,
+            &:after,
+            .ico2:before,
+            .ico2:after {
+              font-size: 80px;
+            }
+
+            .title {
+              font-size: 12px;
+              .ico3:after {
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .popup-content .container .end .particle {
+  opacity: 0;
+  position: absolute;
+  background-color: rgba(204, 42, 93, 1);
+  animation: hearts 3s ease-in infinite;
+  &:before,
+  &:after {
+    position: absolute;
+    content: "";
+    border-radius: 100px;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(204, 42, 93, 1);
+  }
+  &:before {
+    transform: translateX(-50%);
+  }
+  &:after {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes explode {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes explodeSmall {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hearts {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0%) rotate(45deg);
+  }
+  20% {
+    //show and hint at moving
+    opacity: 0.8;
+    transform: translate(0, -20%) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, -1000%) rotate(45deg); //Big hearts move faster
+  }
+}

@@ -1,0 +1,16 @@
+<div class="container">
+  <div
+    class="text words chars splitting"
+    style="--word-total: 4; --char-total: 26"
+  >
+    <ng-container *ngFor="let work of works; let i = index; let isLast = last">
+      <span class="word" style="--word-index: {{ i }}">
+        <ng-container *ngFor="let char of work.Chars">
+          <span class="char" style="--char-index: {{char.Index}}">{{char.Char}}</span>
+        </ng-container>
+      </span>
+      <span class="whitespace" *ngIf="!isLast">&nbsp;</span>
+    </ng-container>
+  </div>
+  <envelope class="envelope" (callback)="callback.emit()" #envelope></envelope>
+</div>
