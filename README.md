@@ -1,10 +1,15 @@
-# WebBirthDay
+# Web BirthDay
 # Author: Nguyen Hoang Phuong (nhphuong020193@gmail.com)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.2.
 
+[DEMO](https://phuonghoangnguyenkms.github.io/happy-birthday/)
+
 ## Config
 Open `config.js` to update variable, Email server
+
+## Install
+Run `npm install` to install all packages
 
 ## Development server
 
@@ -14,7 +19,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Deploy
+## Deploy to github
 
 Run `ng deploy --base-href=/` to deployee the project to github. After completed, it will push code to git branch `gh-pages`. Please open and edit line `6` on `index.html` file as bellow:
 
