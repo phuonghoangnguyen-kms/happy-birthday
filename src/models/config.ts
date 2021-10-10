@@ -6,7 +6,7 @@ export class Config {
         Month: number,
         Year: number,
     };
-    public Music: string;
+    public Music: string[];
     public HappyBirthDayText: string;
     public DearMessage: string;
     public Messages: string[];

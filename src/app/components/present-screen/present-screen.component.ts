@@ -112,12 +112,26 @@ export class PresentScreenComponent implements OnInit, AfterViewInit {
         }
     }
 
-
+    indexMusic = 0;
     async playAudio(): Promise<void> {
         let audio = new Audio();
-        audio.src = this.config.Music;
-        audio.loop = true;
+        audio.src = this.config.Music[0];
+        // audio.loop = true;
         audio.autoplay = true;
+        audio.load();
+        audio.play();
+        audio.addEventListener('ended', () => {
+            if (this.indexMusic + 1 < this.config.Music.length) {
+                this.indexMusic++;
+            } else {
+                this.indexMusic = 0;
+            }
+            this.playNext(audio);
+        });
+    }
+
+    playNext(audio: HTMLAudioElement): void {
+        audio.src = this.config.Music[this.indexMusic];
         audio.load();
         audio.play();
     }

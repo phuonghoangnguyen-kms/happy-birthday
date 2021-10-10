@@ -5,9 +5,11 @@
       <ng-container *ngFor="let item of messages; let i = index">
         <div class="image" id="image-{{ i }}" [class.show]="index == i"></div>
       </ng-container>
-      <div class="message" *ngIf="-1 < index && index < messages.length">
-        {{ messages[index] }}
-      </div>
+      <div
+        class="message"
+        *ngIf="-1 < index && index < messages.length"
+        [innerHtml]="messages[index]"
+      ></div>
     </ng-container>
     <div class="image-heart" *ngIf="index == messages.length">
       <image-heart></image-heart>
@@ -36,7 +38,7 @@
           </div>
           <div>VE YOU</div>
         </div>
-        <div class="end-message">{{ config.LastMessage }}</div>
+        <div class="end-message" [innerHtml]="config.LastMessage"></div>
         <div class="end-box">
           <textarea
             name=""

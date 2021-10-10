@@ -22,5 +22,5 @@
     "From": "emaifrom@example.com",
     "Subject": "Happy birthday"
   },
-  "Music": "assets/romantic-happy-birthday.mp3"
+  "Music": ["assets/romantic-happy-birthday.mp3"]
 }
